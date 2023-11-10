@@ -1,3 +1,3 @@
-# PlayDate Skeleton
+# PlayJam 4
 
-A simple project skeleton for PlayDate projects that has configurations for IntellijIDEA
+My attempt to make a game for the PlayJam 4.
