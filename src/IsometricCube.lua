@@ -13,21 +13,23 @@ class("IsometricCube").extends(gfx.sprite);
 
 function IsometricCube:init(x, y, size)
 
-    if (size == nil) then
-        size = 16;
+    self.size = 16;
+
+    if (size) then
+        self.size = size
     end
 
-    self.size = size;
+    print(self.size)
 
     --- What the fuck is wrong with me?
 
     local startXPos = 0
-    local startYPos = size / 2
-    local distance = size
+    local startYPos = self.size / 2
+    local distance = self.size
 
     --- IsometricCusuper.init(self)
     self:moveTo(x, y);
-    local isoCubeImage = gfx.image.new(size * 2, size * 2);
+    local isoCubeImage = gfx.image.new(self.size * 2, self.size * 2);
     drawIsometricSquareToContext(startXPos, startYPos, distance,isoCubeImage)
 
     drawIsometricSquareToContext(startXPos, startYPos + distance, distance, isoCubeImage, {

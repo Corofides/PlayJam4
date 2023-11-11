@@ -11,6 +11,7 @@ import "CoreLibs/timer"
 
 import "IsometricCube"
 import "IsometricSquare"
+import "MovableIsoCube"
 
 local pd <const> = playdate
 local gfx <const> = pd.graphics
@@ -21,7 +22,7 @@ local pdHeight <const> = 240
 local startPosX <const> = 200;
 local startPosY <const> = 144;
 
-IsometricCube(startPosX, startPosY);
+MovableIsoCube(startPosX, startPosY);
 IsometricCube(startPosX - 32, startPosY - 32, 64)
 
 
