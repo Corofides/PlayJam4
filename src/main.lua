@@ -22,7 +22,7 @@ local startPosX <const> = 200;
 local startPosY <const> = 144;
 
 IsometricCube(startPosX, startPosY);
-IsometricCube(startPosX - 32, startPosY - 32)
+IsometricCube(startPosX - 32, startPosY - 32, 64)
 
 
 for i = 0,10,1 do

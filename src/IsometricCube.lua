@@ -11,17 +11,23 @@ import 'IsometricSquare'
 
 class("IsometricCube").extends(gfx.sprite);
 
-function IsometricCube:init(x, y)
+function IsometricCube:init(x, y, size)
+
+    if (size == nil) then
+        size = 16;
+    end
+
+    self.size = size;
 
     --- What the fuck is wrong with me?
 
     local startXPos = 0
-    local startYPos = 8
-    local distance = 16
+    local startYPos = size / 2
+    local distance = size
 
     --- IsometricCusuper.init(self)
     self:moveTo(x, y);
-    local isoCubeImage = gfx.image.new(32, 64);
+    local isoCubeImage = gfx.image.new(size * 2, size * 2);
     drawIsometricSquareToContext(startXPos, startYPos, distance,isoCubeImage)
 
     drawIsometricSquareToContext(startXPos, startYPos + distance, distance, isoCubeImage, {
@@ -32,15 +38,17 @@ function IsometricCube:init(x, y)
 
         startYPos = startYPos + distance
 
-        gfx.drawLine(16, startYPos + distance / 2, 16, startYPos - distance / 2)
-        gfx.drawLine(0, startYPos - distance, 0, startYPos)
-        gfx.drawLine(31, startYPos, 31,startYPos - distance)
+        gfx.drawLine(startXPos, startYPos - distance, startXPos, startYPos)
+        gfx.drawLine(startXPos + distance, startYPos + distance / 2, startXPos + distance, startYPos - distance / 2)
+        gfx.drawLine(startXPos + distance * 2 - 1, startYPos, startXPos + distance * 2 - 1,startYPos - distance)
 
+    --- self:setCollideRect(0, 0, 32, 32)
     gfx.popContext()
     self:setImage(isoCubeImage)
     self:add();
 end
 
-function drawIsometricSquare()
+function IsometricCube:update()
+
 
 end
