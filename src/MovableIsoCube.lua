@@ -13,6 +13,7 @@ class("MovableIsoCube").extends(IsometricCube)
 
 function MovableIsoCube:init(x, y, size)
     MovableIsoCube.super.init(self, x, y)
+    self:setZIndex(32767);
     self.isLockedToGrid = true;
 end
 
@@ -29,6 +30,16 @@ function MovableIsoCube:mvNorthEast()
     local moveByDistance = self:calcMvDistance()
     self:moveBy(moveByDistance, -moveByDistance / 2)
 
+end
+
+function MovableIsoCube:mvUp()
+    local moveByDistance = self:calcMvDistance();
+    self:moveBy(0, -moveByDistance)
+end
+
+function MovableIsoCube:mvDown()
+    local moveByDistance = self:calcMvDistance();
+    self:moveBy(0, moveByDistance)
 end
 
 function MovableIsoCube:mvSouthEast()
@@ -50,12 +61,18 @@ end
 function MovableIsoCube:update()
 
     if (pd.buttonJustPressed(pd.kButtonDown)) then
-        --- if (self.y < (240 - playerSize / 2)) then
-            self:mvSouthWest()
-        --- end
+        if (pd.buttonIsPressed(pd.kButtonA)) then
+            self:mvDown()
+            return
+        end
+        self:mvSouthWest()
     end
 
     if (pd.buttonJustPressed(pd.kButtonUp)) then
+        if (pd.buttonIsPressed(pd.kButtonA)) then
+            self:mvUp()
+            return
+        end
         self:mvNorthEast()
     end
 
@@ -66,5 +83,10 @@ function MovableIsoCube:update()
     if (pd.buttonJustPressed(pd.kButtonLeft)) then
         self:mvNorthWest()
     end
+
+    if (pd.buttonJustPressed(pd.kButtonB)) then
+        IsometricCube(self.x, self.y)
+    end
+
 
 end

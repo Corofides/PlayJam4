@@ -38,6 +38,39 @@ function IsometricCube:init(x, y, size)
 
     gfx.pushContext(isoCubeImage)
 
+        gfx.setColor(gfx.kColorWhite);
+
+        local pointsTable <const> = {
+            startXPos + 1, startYPos + 1,
+            startXPos + 1, startYPos + distance,
+            startXPos + distance, startYPos + distance * 1.5 -1,
+            startXPos + distance, startYPos + distance * 0.5,
+            startXPos + 1, startYPos + 1,
+        }
+
+        gfx.fillPolygon(table.unpack(pointsTable))
+
+        local oldXPos = startXPos;
+        local oldYPos = startYPos;
+
+        startXPos = startXPos + distance;
+        startYPos = startYPos + distance / 2;
+
+        local pointsTable <const> = {
+            startXPos + 1, startYPos + 1,
+            startXPos + 1, startYPos + distance - 1,
+            startXPos + distance, startYPos + distance * 0.5 - 1,
+            startXPos + distance, startYPos - distance * 0.5 + 1,
+            startXPos + 1, startYPos + 1,
+        }
+
+        startXPos = oldXPos
+        startYPos = oldYPos
+
+        gfx.fillPolygon(table.unpack(pointsTable))
+
+        gfx.setColor(gfx.kColorBlack);
+
         startYPos = startYPos + distance
 
         gfx.drawLine(startXPos, startYPos - distance, startXPos, startYPos)
@@ -46,6 +79,7 @@ function IsometricCube:init(x, y, size)
 
     --- self:setCollideRect(0, 0, 32, 32)
     gfx.popContext()
+
     self:setImage(isoCubeImage)
     self:add();
 end

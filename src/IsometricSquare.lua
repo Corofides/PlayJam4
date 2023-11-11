@@ -9,13 +9,31 @@ local gfx <const> = pd.graphics
 
 class("IsometricSquare").extends(gfx.sprite)
 
-function drawIsometricSquareToContext(startXPos, startYPos, distance, context, show)
+function drawIsometricSquareToContext(startXPos, startYPos, distance, context, show, fill)
 
     if (show == nil) then
         show = {true, true, true, true}
     end
 
+    if (fill == nil) then
+        fill = true;
+    end
+
     gfx.pushContext(context);
+
+    gfx.setColor(gfx.kColorWhite)
+
+    local pointsTable <const> = {
+        startXPos + 1, startYPos,
+        startXPos + distance + 1, startYPos + (distance / 2) - 1,
+        startXPos + (distance * 2), startYPos - 1,
+        startXPos + distance, startYPos - (distance / 2) - 1,
+        startXPos + 1, startYPos - 1,
+    }
+
+    gfx.fillPolygon(table.unpack(pointsTable))
+
+    gfx.setColor(gfx.kColorBlack)
 
     if (show[1]) then
         gfx.drawLine(startXPos, startYPos, startXPos + distance, startYPos + (distance / 2))
@@ -32,6 +50,8 @@ function drawIsometricSquareToContext(startXPos, startYPos, distance, context, s
     if (show[4]) then
         gfx.drawLine(startXPos, startYPos, startXPos + distance, startYPos - (distance / 2))
     end
+
+
 
     gfx.popContext()
 
