@@ -5,19 +5,33 @@
 ---
 
 local pd <const> = playdate
-local gfx <const> = playdate.graphics
+local gfx <const> = pd.graphics
 
 class("IsometricSquare").extends(gfx.sprite)
 
-function drawIsometricSquareToContext(startXPos, startYPos, distance, context)
+function drawIsometricSquareToContext(startXPos, startYPos, distance, context, show)
+
+    if (show == nil) then
+        show = {true, true, true, true}
+    end
 
     gfx.pushContext(context);
 
-    gfx.drawLine(startXPos, startYPos, startXPos + distance, startYPos + (distance / 2))
-    gfx.drawLine(startXPos + distance, startYPos + (distance / 2), startXPos + (distance * 2), startYPos);
+    if (show[1]) then
+        gfx.drawLine(startXPos, startYPos, startXPos + distance, startYPos + (distance / 2))
+    end
 
-    gfx.drawLine(startXPos, startYPos, startXPos + distance, startYPos - (distance / 2))
-    gfx.drawLine(startXPos + distance, startYPos - (distance / 2), startXPos + distance * 2, startYPos)
+    if (show[2]) then
+        gfx.drawLine(startXPos + distance, startYPos + (distance / 2), startXPos + (distance * 2), startYPos);
+    end
+
+    if (show[3]) then
+        gfx.drawLine(startXPos + distance, startYPos - (distance / 2), startXPos + distance * 2, startYPos)
+    end
+
+    if (show[4]) then
+        gfx.drawLine(startXPos, startYPos, startXPos + distance, startYPos - (distance / 2))
+    end
 
     gfx.popContext()
 

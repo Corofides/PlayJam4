@@ -5,7 +5,7 @@
 ---
 
 local pd <const> = playdate;
-local gfx <const> = playdate.graphics;
+local gfx <const> = pd.graphics;
 
 import 'IsometricSquare'
 
@@ -23,7 +23,10 @@ function IsometricCube:init(x, y)
     self:moveTo(x, y);
     local isoCubeImage = gfx.image.new(32, 64);
     drawIsometricSquareToContext(startXPos, startYPos, distance,isoCubeImage)
-    drawIsometricSquareToContext(startXPos, startYPos + distance, distance, isoCubeImage)
+
+    drawIsometricSquareToContext(startXPos, startYPos + distance, distance, isoCubeImage, {
+        true, true, false, false
+    })
 
     gfx.pushContext(isoCubeImage)
 

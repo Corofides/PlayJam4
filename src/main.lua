@@ -13,7 +13,7 @@ import "IsometricCube"
 import "IsometricSquare"
 
 local pd <const> = playdate
-local gfx <const> = playdate.graphics
+local gfx <const> = pd.graphics
 
 local pdWidth <const> = 400;
 local pdHeight <const> = 240
