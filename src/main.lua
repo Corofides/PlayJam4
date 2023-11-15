@@ -13,6 +13,7 @@ import "IsometricCube"
 import "IsometricSquare"
 import "MovableIsoCube"
 import "CrankMenu"
+import "CrankWindow"
 
 local pd <const> = playdate
 local gfx <const> = pd.graphics
@@ -25,7 +26,9 @@ local startPosY <const> = 144;
 
 MovableIsoCube(startPosX, startPosY);
 IsometricCube(startPosX - 32, startPosY - 32, 64)
+local crankWindowTrue = CrankWindow(0, 0, true)
 CrankMenu();
+crankWindowTrue:select(false);
 
 
 for i = 0,10,1 do
